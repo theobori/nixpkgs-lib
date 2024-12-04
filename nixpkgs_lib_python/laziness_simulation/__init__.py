@@ -1,0 +1,1 @@
+"""laziness simulation module"""
