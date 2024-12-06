@@ -2,7 +2,7 @@
 
 import unittest
 
-from nixpkgs_lib_python import fix, fix_prime, extends
+from nixpkgs_lib_python import fix, fix_prime, extends, converge, to_extension
 
 
 class TestFixedPoint(unittest.TestCase):
@@ -47,28 +47,46 @@ class TestFixedPoint(unittest.TestCase):
 
         f = lambda final: {"a": 1, "b": final["a"] + 2}
 
-        overlay = lambda final, prev: {"a": prev["a"] + 10}
+        overlay = lambda final: lambda prev: {"a": prev["a"] + 10}
         result = fix(extends(overlay, f))
 
-        self.assertEqual(result, {"a": 11, "b": 13})
+        self.assertDictEqual(result, {"a": 11, "b": 13})
 
-        overlay = lambda final, prev: {"b": final["a"] + 5}
+        overlay = lambda final: lambda prev: {"b": final["a"] + 5}
         result = fix(extends(overlay, f))
 
-        self.assertEqual(result, {"a": 1, "b": 6})
+        self.assertDictEqual(result, {"a": 1, "b": 6})
 
-        overlay = lambda final, prev: {"c": prev["a"] + final["b"]}
+        overlay = lambda final: lambda prev: {"c": prev["a"] + final["b"]}
         result = fix(extends(overlay, f))
 
-        self.assertEqual(result, {"a": 1, "b": 3, "c": 4})
+        self.assertDictEqual(result, {"a": 1, "b": 3, "c": 4})
 
-    # def test_fixed_point_compose_extensions(self):
-    #     """Test fixed point extends function"""
+    def test_fixed_point_converge(self):
+        """Test fixed point converge function"""
+        result = converge(lambda x: x // 2, 16)
 
-    #     original = lambda final: {"a": 1}
+        self.assertEqual(result, 0)
 
-    #     overlay_a = lambda final, prev: {"b": final["c"], "c": 3}
-    #     overlay_b = lambda final, prev: {"c": 10, "x": prev["c"] or 5}
+    def test_fixed_point_to_extension(self):
+        """Test fixed point to_extension function"""
+
+        extension = to_extension({"a": 1, "b": 2})
+        result = fix(extends(extension, lambda final: {"a": 0, "c": final["a"]}))
+
+        self.assertDictEqual(result, {"a": 1, "b": 2, "c": 1})
+
+        extension = to_extension(lambda prev: {"a": 1, "b": prev["a"]})
+        result = fix(extends(extension, lambda final: {"a": 0, "c": final["a"]}))
+
+        self.assertDictEqual(result, {"a": 1, "b": 0, "c": 1})
+
+        extension = to_extension(
+            lambda final: lambda prev: {"a": 1, "b": prev["a"], "c": final["a"] + 1}
+        )
+        result = fix(extends(extension, lambda final: {"a": 0, "c": final["a"]}))
+
+        self.assertDictEqual(result, {"a": 1, "b": 0, "c": 2})
 
 
 if __name__ == "__main__":

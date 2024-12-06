@@ -11,10 +11,11 @@ class TestLists(unittest.TestCase):
     def test_lists_fold(self):
         """Test lists fold"""
 
-        fold_call = lambda f: f(lambda a, b: a + b, "z", ["a", "b", "c"])
+        fold_call = lambda f: f(lambda a: lambda b: a + b, "z", ["a", "b", "c"])
 
-        self.assertEqual(fold_call(foldr), "abcz")
-        self.assertEqual(fold_call(fold), "abcz")
+        concat = foldr(lambda a: lambda b: a + b, "z")
+
+        self.assertEqual(concat(["a", "b", "c"]), "abcz")
 
 
 if __name__ == "__main__":
