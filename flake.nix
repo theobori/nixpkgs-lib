@@ -22,7 +22,12 @@
       {
         packages = {
           default = pkgs.callPackage ./. {
-            inherit (pkgs.python3Packages) buildPythonPackage setuptools pytestCheckHook;
+            inherit (pkgs.python3Packages)
+              buildPythonPackage
+              setuptools
+              pytestCheckHook
+              beautifultable
+              ;
           };
         };
 
@@ -38,7 +43,8 @@
                 pip
                 venvShellHook
                 setuptools
-              ]);
+              ])
+              ++ self.packages.${system}.default.dependencies;
           };
         };
 

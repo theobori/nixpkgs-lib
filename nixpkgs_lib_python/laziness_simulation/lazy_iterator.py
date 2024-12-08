@@ -7,7 +7,11 @@ from .stub import Stub
 
 class LazyIterator(list):
     """Lazy iterator object, it is supposed to have a short
-    lifetime"""
+    lifetime
+
+    Args:
+        list (_type_): _description_
+    """
 
     def __init__(self, *args: Tuple[Any], **kwargs: Dict[str, Any]):
         self.__memo = {}

@@ -11,7 +11,9 @@ with open("LICENSE", encoding="utf-8") as f:
 setup(
     name="nixpkgs_lib_python",
     version="0.0.1",
-    install_requires=[],
+    install_requires=[
+        "beautifultable",
+    ],
     description="Nixpkgs library part implementation in Python with laziness simulation",
     long_description=readme,
     long_description_content_type="text/markdown",
@@ -22,4 +24,9 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     test_suite="tests",
+    entry_points={
+        "console_scripts": [
+            "nixpkgs-lib-python=nixpkgs_lib_python.scripts.show_progress:main"
+        ]
+    },
 )

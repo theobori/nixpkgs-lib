@@ -3,6 +3,7 @@
   buildPythonPackage,
   setuptools,
   pytestCheckHook,
+  beautifultable,
 }:
 buildPythonPackage {
   pname = "nixpkgs-lib-python";
@@ -10,6 +11,10 @@ buildPythonPackage {
   pyproject = true;
 
   src = ./.;
+
+  dependencies = [
+    beautifultable
+  ];
 
   nativeBuildInputs = [ setuptools ];
 

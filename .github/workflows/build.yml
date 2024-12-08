@@ -1,4 +1,4 @@
-name: Nix Flake Check
+name: Nix Flake Build And Check
 
 on:
   push:
@@ -6,10 +6,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
+  builc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check -L
+      - run: nix build

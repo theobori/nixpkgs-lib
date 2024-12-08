@@ -6,6 +6,9 @@ def curry(func):
 
     See https://en.wikipedia.org/wiki/Currying
     See https://python-course.eu/advanced-python/currying-in-python.php
+
+    Args:
+        func (_type_): _description_
     """
 
     def curried(*args):
