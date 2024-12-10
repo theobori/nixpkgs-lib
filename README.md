@@ -5,7 +5,7 @@
 
 This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib_python`.
 
-## Implementation progress: 14.71% (10 / 68)
+## Implementation progress: 58.82% (40 / 68)
 
 This section lists all the functions in the Nixpkgs library that are supposed to be implemented.
 Each function name is associated with a status indicating whether it has been implemented.
@@ -23,14 +23,14 @@ Each function name is associated with a status indicating whether it has been im
 |`makeExtensibleWithCustomName`|`make_extensible_with_custom_name`|No|
 |`toExtension`|`to_extension`|Yes|
 
-### `lists`: 8.47% (5/59)
+### `lists`: 59.32% (35/59)
 |Nix name|Python name|Implemented|
 |-|-|-|
-|`all`|`all`|No|
-|`allUnique`|`all_unique`|No|
-|`any`|`any`|No|
-|`commonPrefix`|`common_prefix`|No|
-|`compareLists`|`compare_lists`|No|
+|`all`|`_all`|Yes|
+|`allUnique`|`all_unique`|Yes|
+|`any`|`_any`|Yes|
+|`commonPrefix`|`common_prefix`|Yes|
+|`compareLists`|`compare_lists`|Yes|
 |`concatLists`|`concat_lists`|No|
 |`concatMap`|`concat_map`|No|
 |`count`|`count`|No|
@@ -38,53 +38,53 @@ Each function name is associated with a status indicating whether it has been im
 |`drop`|`drop`|No|
 |`elem`|`elem`|No|
 |`elemAt`|`elem_at`|No|
-|`filter`|`filter`|No|
-|`findFirst`|`find_first`|No|
+|`filter`|`_filter`|No|
+|`findFirst`|`find_first`|Yes|
 |`findFirstIndex`|`find_first_index`|No|
-|`findSingle`|`find_single`|No|
-|`flatten`|`flatten`|No|
+|`findSingle`|`find_single`|Yes|
+|`flatten`|`flatten`|Yes|
 |`fold`|`fold`|Yes|
 |`foldl`|`foldl`|Yes|
 |`foldl'`|`foldl_prime`|No|
 |`foldr`|`foldr`|Yes|
 |`forEach`|`for_each`|Yes|
 |`genList`|`gen_list`|No|
-|`groupBy`|`group_by`|No|
-|`groupBy'`|`group_by_prime`|No|
-|`hasPrefix`|`has_prefix`|No|
-|`head`|`head`|No|
-|`ifilter0`|`ifilter0`|No|
-|`imap0`|`imap0`|No|
-|`imap1`|`imap1`|No|
-|`init`|`init`|No|
-|`intersectLists`|`intersect_lists`|No|
+|`groupBy`|`group_by`|Yes|
+|`groupBy'`|`group_by_prime`|Yes|
+|`hasPrefix`|`has_prefix`|Yes|
+|`head`|`head`|Yes|
+|`ifilter0`|`ifilter0`|Yes|
+|`imap0`|`imap0`|Yes|
+|`imap1`|`imap1`|Yes|
+|`init`|`init`|Yes|
+|`intersectLists`|`intersect_lists`|Yes|
 |`isList`|`is_list`|No|
 |`last`|`last`|No|
 |`length`|`length`|No|
 |`listDfs`|`list_dfs`|No|
-|`map`|`map`|No|
-|`mutuallyExclusive`|`mutually_exclusive`|No|
-|`naturalSort`|`natural_sort`|No|
+|`map`|`_map`|No|
+|`mutuallyExclusive`|`mutually_exclusive`|Yes|
+|`naturalSort`|`natural_sort`|Yes|
 |`optional`|`optional`|No|
 |`optionals`|`optionals`|No|
-|`partition`|`partition`|No|
-|`range`|`range`|No|
-|`remove`|`remove`|No|
-|`removePrefix`|`remove_prefix`|No|
-|`replicate`|`replicate`|No|
-|`reverseList`|`reverse_list`|No|
+|`partition`|`partition`|Yes|
+|`range`|`_range`|Yes|
+|`remove`|`remove`|Yes|
+|`removePrefix`|`remove_prefix`|Yes|
+|`replicate`|`replicate`|Yes|
+|`reverseList`|`reverse_list`|Yes|
 |`singleton`|`singleton`|Yes|
 |`sort`|`sort`|No|
 |`sortOn`|`sort_on`|No|
-|`sublist`|`sublist`|No|
-|`subtractLists`|`subtract_lists`|No|
-|`tail`|`tail`|No|
+|`sublist`|`sublist`|Yes|
+|`subtractLists`|`subtract_lists`|Yes|
+|`tail`|`tail`|Yes|
 |`take`|`take`|No|
 |`toList`|`to_list`|No|
 |`toposort`|`toposort`|No|
 |`unique`|`unique`|No|
-|`zipLists`|`zip_lists`|No|
-|`zipListsWith`|`zip_lists_with`|No|
+|`zipLists`|`zip_lists`|Yes|
+|`zipListsWith`|`zip_lists_with`|Yes|
 
 
 ## Example
