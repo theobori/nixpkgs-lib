@@ -7,6 +7,8 @@ from .curry.curry import curry
 
 
 def fix(f: Callable) -> Iterator:
+    """Compute the least fixed point of a function"""
+
     # Evaluates with the stub value
     result = f(LazyIterator())
     # Final evaluation
@@ -16,6 +18,8 @@ def fix(f: Callable) -> Iterator:
 
 
 def fix_prime(f: Callable) -> Iterator:
+    """Like fix but preserves the original function in __unfix__"""
+
     result = fix(f)
 
     if type(result) is dict:
@@ -26,6 +30,8 @@ def fix_prime(f: Callable) -> Iterator:
 
 @curry
 def extends(overlay: Callable, f: Callable) -> Callable:
+    """Create a new fixed point with an overlay applied to the previous one"""
+
     def inner(final: dict) -> dict:
         prev = f(final)
 
@@ -39,6 +45,8 @@ def extends(overlay: Callable, f: Callable) -> Callable:
 
 @curry
 def converge(f: Callable, x: Any) -> Any:
+    """Apply function f repeatedly until it converges to a fixed point"""
+
     x_prime = f(x)
 
     if x_prime == x:
@@ -48,6 +56,8 @@ def converge(f: Callable, x: Any) -> Any:
 
 
 def to_extension(f: Any) -> Any:
+    """Convert a function to an extension compatible form"""
+
     if callable(f) is False:
         return lambda final: lambda prev: f
 

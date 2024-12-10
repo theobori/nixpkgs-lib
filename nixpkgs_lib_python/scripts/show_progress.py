@@ -3,8 +3,9 @@
 import subprocess
 import os
 import re
-from argparse import ArgumentParser
+import builtins
 
+from argparse import ArgumentParser
 from typing import List, Dict
 from sys import stderr, argv
 
@@ -15,11 +16,34 @@ import nixpkgs_lib_python
 from .. import fixed_point
 from .. import lists
 
+
+def filter_attributes(names: List[str]) -> List[str]:
+    """Filter Python attributes, keeping only snake_case string
+
+    Args:
+        names (List[str]): Attributes
+
+    Returns:
+        List[str]: Filtered attributes
+    """
+
+    return list(
+        filter(
+            lambda name: not (
+                (name.startswith("__") and name.endswith("__")) or name[0].isupper()
+            ),
+            names,
+        )
+    )
+
+
 # Nix name -> Python name
 NIX_ATTR_NAMES = {
     "fixedPoints": "fixed_point",
     "lists": "lists",
 }
+
+BUILTIN_NAMES = filter_attributes(dir(builtins))
 
 TABLE_TITLES = ["Nix name", "Python name", "Implemented"]
 
@@ -109,6 +133,9 @@ class NixpkgsLib:
             out = re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
             # Replace ' by _prime
             out = out.replace("'", "_prime")
+            # Check if the name is a builtin python name
+            if out in BUILTIN_NAMES:
+                out = "_" + out
             # Later, probably the number will be replaced with their letters name
 
             return out
@@ -162,14 +189,7 @@ def build_progress() -> Dict[str, dict]:
     ):
         names = dir(module)
         # Removing dunders method, just by prevention
-        names = list(
-            filter(
-                lambda name: not (
-                    (name.startswith("__") and name.endswith("__")) or name[0].isupper()
-                ),
-                names,
-            )
-        )
+        names = filter_attributes(names)
 
         module_names.extend(names)
 

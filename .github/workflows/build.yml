@@ -1,4 +1,4 @@
-name: Nix Flake Build And Check
+name: Build And Check
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  builc:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,3 +14,17 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check -L
       - run: nix build
+      - name: Update the implementation progress inside the README file
+        run: |
+          ./result/bin/nixpkgs-lib-python readme > README.md.new
+
+          # Check if they are differents
+          if ! cmp -s README.md README.md.new; then
+            # Replacing the original README by the new one
+            mv README.md.new README.md
+
+            # Push the new file
+            git add README.md
+            git -c user.name='GitHub Action' -c user.email='action@github.com' commit -m "📝 Updated the implementation progress"
+            git push -f
+          fi
