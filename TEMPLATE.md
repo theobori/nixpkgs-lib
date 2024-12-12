@@ -36,7 +36,7 @@ in
 
 The Python version.
 ```python
-from nixpkgs_lib_python import fix
+from nixpkgs_lib_python import fix, elem_at
 
 result_dict = fix(
     lambda self: {
@@ -44,7 +44,7 @@ result_dict = fix(
         "b": int(self["a"]) + 1,
     }
 )
-result_list = fix(lambda self: ["3", int(self[0]) + 1])
+result_list = fix(lambda self: ["3", int(elem_at(self)(0)) + 1])
 ```
 
 ## Contribute

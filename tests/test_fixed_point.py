@@ -2,7 +2,7 @@
 
 import unittest
 
-from nixpkgs_lib_python import fix, fix_prime, extends, converge, to_extension
+from nixpkgs_lib_python import fix, fix_prime, extends, converge, to_extension, elem_at
 
 
 class TestFixedPoint(unittest.TestCase):
@@ -33,7 +33,7 @@ class TestFixedPoint(unittest.TestCase):
 
         it_function = lambda self: [
             "hello",
-            self[0] + " world " + self[0],
+            self[0] + " world " + elem_at(self)(0),
             self[1] + "world",
             self[0] == "hello",
         ]

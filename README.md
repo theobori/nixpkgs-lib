@@ -5,7 +5,7 @@
 
 This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib_python`.
 
-## Implementation progress: 58.82% (40 / 68)
+## Implementation progress: 89.71% (61 / 68)
 
 This section lists all the functions in the Nixpkgs library that are supposed to be implemented.
 Each function name is associated with a status indicating whether it has been implemented.
@@ -23,7 +23,7 @@ Each function name is associated with a status indicating whether it has been im
 |`makeExtensibleWithCustomName`|`make_extensible_with_custom_name`|No|
 |`toExtension`|`to_extension`|Yes|
 
-### `lists`: 59.32% (35/59)
+### `lists`: 94.92% (56/59)
 |Nix name|Python name|Implemented|
 |-|-|-|
 |`all`|`_all`|Yes|
@@ -31,24 +31,24 @@ Each function name is associated with a status indicating whether it has been im
 |`any`|`_any`|Yes|
 |`commonPrefix`|`common_prefix`|Yes|
 |`compareLists`|`compare_lists`|Yes|
-|`concatLists`|`concat_lists`|No|
-|`concatMap`|`concat_map`|No|
-|`count`|`count`|No|
-|`crossLists`|`cross_lists`|No|
-|`drop`|`drop`|No|
-|`elem`|`elem`|No|
-|`elemAt`|`elem_at`|No|
-|`filter`|`_filter`|No|
+|`concatLists`|`concat_lists`|Yes|
+|`concatMap`|`concat_map`|Yes|
+|`count`|`count`|Yes|
+|`crossLists`|`cross_lists`|Yes|
+|`drop`|`drop`|Yes|
+|`elem`|`elem`|Yes|
+|`elemAt`|`elem_at`|Yes|
+|`filter`|`_filter`|Yes|
 |`findFirst`|`find_first`|Yes|
-|`findFirstIndex`|`find_first_index`|No|
+|`findFirstIndex`|`find_first_index`|Yes|
 |`findSingle`|`find_single`|Yes|
 |`flatten`|`flatten`|Yes|
 |`fold`|`fold`|Yes|
 |`foldl`|`foldl`|Yes|
-|`foldl'`|`foldl_prime`|No|
+|`foldl'`|`foldl_prime`|Yes|
 |`foldr`|`foldr`|Yes|
 |`forEach`|`for_each`|Yes|
-|`genList`|`gen_list`|No|
+|`genList`|`gen_list`|Yes|
 |`groupBy`|`group_by`|Yes|
 |`groupBy'`|`group_by_prime`|Yes|
 |`hasPrefix`|`has_prefix`|Yes|
@@ -58,15 +58,15 @@ Each function name is associated with a status indicating whether it has been im
 |`imap1`|`imap1`|Yes|
 |`init`|`init`|Yes|
 |`intersectLists`|`intersect_lists`|Yes|
-|`isList`|`is_list`|No|
-|`last`|`last`|No|
-|`length`|`length`|No|
+|`isList`|`is_list`|Yes|
+|`last`|`last`|Yes|
+|`length`|`length`|Yes|
 |`listDfs`|`list_dfs`|No|
-|`map`|`_map`|No|
+|`map`|`_map`|Yes|
 |`mutuallyExclusive`|`mutually_exclusive`|Yes|
 |`naturalSort`|`natural_sort`|Yes|
-|`optional`|`optional`|No|
-|`optionals`|`optionals`|No|
+|`optional`|`optional`|Yes|
+|`optionals`|`optionals`|Yes|
 |`partition`|`partition`|Yes|
 |`range`|`_range`|Yes|
 |`remove`|`remove`|Yes|
@@ -74,15 +74,15 @@ Each function name is associated with a status indicating whether it has been im
 |`replicate`|`replicate`|Yes|
 |`reverseList`|`reverse_list`|Yes|
 |`singleton`|`singleton`|Yes|
-|`sort`|`sort`|No|
+|`sort`|`sort`|Yes|
 |`sortOn`|`sort_on`|No|
 |`sublist`|`sublist`|Yes|
 |`subtractLists`|`subtract_lists`|Yes|
 |`tail`|`tail`|Yes|
-|`take`|`take`|No|
-|`toList`|`to_list`|No|
+|`take`|`take`|Yes|
+|`toList`|`to_list`|Yes|
 |`toposort`|`toposort`|No|
-|`unique`|`unique`|No|
+|`unique`|`unique`|Yes|
 |`zipLists`|`zip_lists`|Yes|
 |`zipListsWith`|`zip_lists_with`|Yes|
 
@@ -111,7 +111,7 @@ in
 
 The Python version.
 ```python
-from nixpkgs_lib_python import fix
+from nixpkgs_lib_python import fix, elem_at
 
 result_dict = fix(
     lambda self: {
@@ -119,7 +119,7 @@ result_dict = fix(
         "b": int(self["a"]) + 1,
     }
 )
-result_list = fix(lambda self: ["3", int(self[0]) + 1])
+result_list = fix(lambda self: ["3", int(elem_at(self)(0)) + 1])
 ```
 
 ## Contribute
