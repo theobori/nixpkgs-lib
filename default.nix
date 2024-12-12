@@ -6,7 +6,7 @@
   beautifultable,
 }:
 buildPythonPackage {
-  pname = "nixpkgs-lib-python";
+  pname = "nixpkgs-lib";
   version = "0.0.1";
   pyproject = true;
 
@@ -20,11 +20,11 @@ buildPythonPackage {
 
   nativeCheckInputs = [ pytestCheckHook ];
 
-  pythonImportsCheck = [ "nixpkgs_lib_python" ];
+  pythonImportsCheck = [ "nixpkgs_lib" ];
 
   meta = {
     description = "Nixpkgs library part implementation in Python with laziness simulation";
-    homepage = "https://github.com/theobori/nixpkgs-lib-python";
+    homepage = "https://github.com/theobori/nixpkgs-lib";
     license = lib.licenses.mit;
   };
 }

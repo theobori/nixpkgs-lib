@@ -16,7 +16,7 @@ jobs:
       - run: nix build
       - name: Update the implementation progress inside the README file
         run: |
-          ./result/bin/nixpkgs-lib-python readme > README.md.new
+          ./result/bin/nixpkgs-lib readme > README.md.new
 
           # Check if they are differents
           if ! cmp -s README.md README.md.new; then

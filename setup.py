@@ -9,7 +9,7 @@ with open("LICENSE", encoding="utf-8") as f:
     _license = f.read()
 
 setup(
-    name="nixpkgs_lib_python",
+    name="nixpkgs_lib",
     version="0.0.1",
     install_requires=[
         "beautifultable",
@@ -19,14 +19,12 @@ setup(
     long_description_content_type="text/markdown",
     author="Théo Bori",
     author_email="nagi@tilde.team",
-    url="https://github.com/theobori/nixpkgs-lib-python",
+    url="https://github.com/theobori/nixpkgs-lib",
     license=_license,
     packages=find_packages(),
     include_package_data=True,
     test_suite="tests",
     entry_points={
-        "console_scripts": [
-            "nixpkgs-lib-python=nixpkgs_lib_python.scripts.show_progress:main"
-        ]
+        "console_scripts": ["nixpkgs-lib=nixpkgs_lib.scripts.show_progress:main"]
     },
 )

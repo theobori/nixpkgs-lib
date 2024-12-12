@@ -2,7 +2,7 @@
 
 import unittest
 
-from nixpkgs_lib_python import (
+from nixpkgs_lib import (
     fix,
     fix_prime,
     extends,

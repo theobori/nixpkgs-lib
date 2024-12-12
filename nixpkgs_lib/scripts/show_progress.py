@@ -11,8 +11,6 @@ from sys import stderr, argv
 
 from beautifultable import BeautifulTable
 
-import nixpkgs_lib_python
-
 from .. import fixed_points
 from .. import lists
 
