@@ -3,7 +3,7 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib_python`.
+This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib`.
 
 ## Implementation progress: 98.53% (67 / 68)
 
@@ -92,7 +92,7 @@ Each function name is associated with a status indicating whether it has been im
 Technically, all functions with more than one argument are curried, so they must be called as follows.
 
 ```python
-from nixpkgs_lib_python import find_single
+from nixpkgs_lib import find_single
 
 find_single(lambda x: x == 3)("none")("multiple")([1, 9])
 ```
@@ -100,7 +100,7 @@ find_single(lambda x: x == 3)("none")("multiple")([1, 9])
 But in this module, the functions, although curried, can be called in any way.
 
 ```python
-from nixpkgs_lib_python import find_single
+from nixpkgs_lib import find_single
 
 # A more comfortable calling style, still returning a function that return a function
 first_part = find_single(lambda x: x == 3, "none")
@@ -132,7 +132,7 @@ in
 
 The Python version.
 ```python
-from nixpkgs_lib_python import fix, elem_at
+from nixpkgs_lib import fix, elem_at
 
 result_dict = fix(
     lambda self: {
