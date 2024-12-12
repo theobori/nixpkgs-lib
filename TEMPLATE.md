@@ -12,6 +12,27 @@ Each function name is associated with a status indicating whether it has been im
 
 {{ progression_table }}
 
+## Function calling style
+
+Technically, all functions with more than one argument are curried, so they must be called as follows.
+
+```python
+from nixpkgs_lib_python import find_single
+
+find_single(lambda x: x == 3)("none")("multiple")([1, 9])
+```
+
+But in this module, the functions, although curried, can be called in any way.
+
+```python
+from nixpkgs_lib_python import find_single
+
+# A more comfortable calling style, still returning a function that return a function
+first_part = find_single(lambda x: x == 3, "none")
+# More explicit calling style
+first_part("multiple")([1, 9])
+```
+
 ## Example
 
 Here's a simple example of what can be done with this module.
