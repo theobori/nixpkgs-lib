@@ -80,14 +80,18 @@ def head(lst: list) -> Any:
     return lst[0]
 
 
-def tail(lst: list) -> Any:
+def last(lst: list) -> Any:
     """Return the last element of a list"""
 
     assert len(lst) > 0
     return lst[-1]
 
 
-last = tail
+def tail(lst: list) -> Any:
+    """Return all elements of the list except the first"""
+
+    assert len(lst) > 0
+    return lst[1:]
 
 
 @curry
@@ -513,3 +517,54 @@ def gen_list(generator: Callable, length: int) -> list:
     """Generate list using function and length"""
 
     return [generator(i) for i in range(length)]
+
+
+@curry
+def list_dfs(stop_on_cycles: bool, before: Callable, lst: list) -> dict:
+    """Perform depth-first search on a list with cycle detection"""
+
+    @curry
+    def dfs_prime(us: Any, visited: list, rest: list) -> dict:
+        c = _filter(lambda x: before(x)(us))(visited)
+        if stop_on_cycles is True and length(c) > 0:
+            return {
+                "cycle": us,
+                "loops": c,
+                "visited": visited,
+                "rest": rest,
+            }
+
+        b = partition(lambda x: before(x)(us))(rest)
+        if length(b["right"]) == 0:
+            return {
+                "minimal": us,
+                "visited": visited,
+                "rest": rest,
+            }
+
+        return dfs_prime(head(b["right"]))([us] + visited)(
+            tail(b["right"]) + b["wrong"]
+        )
+
+    return dfs_prime(head(lst))([])(tail(lst))
+
+
+@curry
+def toposort(before: Callable, lst: list) -> dict:
+    """Topologically sort a list using the given ordering function"""
+
+    if length(lst) < 2:
+        return {"result": lst}
+
+    dfs_this = list_dfs(True)(before)(lst)
+    if "cycle" in dfs_this:
+        return {
+            "cycle": reverse_list([dfs_this["cycle"]] + dfs_this["visited"]),
+            "loops": dfs_this["loops"],
+        }
+
+    toporest = toposort(before)(dfs_this["visited"] + dfs_this["rest"])
+    if "cycle" in toporest:
+        return toporest
+
+    return {"result": [dfs_this["minimal"]] + toporest["result"]}

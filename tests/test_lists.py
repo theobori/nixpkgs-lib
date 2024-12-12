@@ -44,6 +44,8 @@ from nixpkgs_lib_python import (
     sort,
     concat_map,
     cross_lists,
+    list_dfs,
+    toposort,
 )
 
 
@@ -320,6 +322,45 @@ class TestLists(unittest.TestCase):
         result = cross_lists(f)([[1, 2], [3, 4]])
 
         self.assertEqual(result, [4, 5, 5, 6])
+
+    def test_lists_list_dfs(self):
+        """Test lists listtest_lists_list_dfs"""
+
+        result = list_dfs(True)(has_prefix)(["/home/user", "other", "/", "/home"])
+        self.assertEqual(
+            result,
+            {
+                "minimal": "/",
+                "visited": ["/home/user"],
+                "rest": ["/home", "other"],
+            },
+        )
+
+        result = list_dfs(True)(has_prefix)(["/home/user", "other", "/", "/home", "/"])
+        self.assertEqual(
+            result,
+            {
+                "cycle": "/",
+                "loops": ["/"],
+                "visited": ["/", "/home/user"],
+                "rest": ["/home", "other"],
+            },
+        )
+
+    def test_lists_toposort(self):
+        """Test lists listtest_lists_toposort"""
+
+        result = toposort(has_prefix)(["/home/user", "other", "/", "/home"])
+        self.assertEqual(result, {"result": ["/", "/home", "/home/user", "other"]})
+
+        result = toposort(has_prefix)(["/home/user", "other", "/", "/home", "/"])
+        self.assertEqual(result, {"cycle": ["/home/user", "/", "/"], "loops": ["/"]})
+
+        result = toposort(has_prefix)(["other", "/home/user", "/home", "/"])
+        self.assertEqual(result, {"result": ["other", "/", "/home", "/home/user"]})
+
+        result = toposort(lambda a: lambda b: a < b)([3, 2, 1])
+        self.assertEqual(result, {"result": [1, 2, 3]})
 
 
 if __name__ == "__main__":

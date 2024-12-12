@@ -5,25 +5,25 @@
 
 This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib_python`.
 
-## Implementation progress: 89.71% (61 / 68)
+## Implementation progress: 98.53% (67 / 68)
 
 This section lists all the functions in the Nixpkgs library that are supposed to be implemented.
 Each function name is associated with a status indicating whether it has been implemented.
 
-### `fixedPoints`: 55.56% (5/9)
+### `fixedPoints`: 100.00% (9/9)
 |Nix name|Python name|Implemented|
 |-|-|-|
-|`composeExtensions`|`compose_extensions`|No|
-|`composeManyExtensions`|`compose_many_extensions`|No|
+|`composeExtensions`|`compose_extensions`|Yes|
+|`composeManyExtensions`|`compose_many_extensions`|Yes|
 |`converge`|`converge`|Yes|
 |`extends`|`extends`|Yes|
 |`fix`|`fix`|Yes|
 |`fix'`|`fix_prime`|Yes|
-|`makeExtensible`|`make_extensible`|No|
-|`makeExtensibleWithCustomName`|`make_extensible_with_custom_name`|No|
+|`makeExtensible`|`make_extensible`|Yes|
+|`makeExtensibleWithCustomName`|`make_extensible_with_custom_name`|Yes|
 |`toExtension`|`to_extension`|Yes|
 
-### `lists`: 94.92% (56/59)
+### `lists`: 98.31% (58/59)
 |Nix name|Python name|Implemented|
 |-|-|-|
 |`all`|`_all`|Yes|
@@ -61,7 +61,7 @@ Each function name is associated with a status indicating whether it has been im
 |`isList`|`is_list`|Yes|
 |`last`|`last`|Yes|
 |`length`|`length`|Yes|
-|`listDfs`|`list_dfs`|No|
+|`listDfs`|`list_dfs`|Yes|
 |`map`|`_map`|Yes|
 |`mutuallyExclusive`|`mutually_exclusive`|Yes|
 |`naturalSort`|`natural_sort`|Yes|
@@ -81,7 +81,7 @@ Each function name is associated with a status indicating whether it has been im
 |`tail`|`tail`|Yes|
 |`take`|`take`|Yes|
 |`toList`|`to_list`|Yes|
-|`toposort`|`toposort`|No|
+|`toposort`|`toposort`|Yes|
 |`unique`|`unique`|Yes|
 |`zipLists`|`zip_lists`|Yes|
 |`zipListsWith`|`zip_lists_with`|Yes|

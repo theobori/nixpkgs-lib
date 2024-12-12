@@ -4,6 +4,7 @@ from typing import Callable, Iterator, Any
 
 from .laziness_simulation.lazy_iterator import LazyIterator
 from .curry.curry import curry
+from .lists import foldr
 
 
 def fix(f: Callable) -> Iterator:
@@ -30,7 +31,7 @@ def fix_prime(f: Callable) -> Iterator:
 
 @curry
 def extends(overlay: Callable, f: Callable) -> Callable:
-    """Create a new fixed point with an overlay applied to the previous one"""
+    """Extend a fixed point with an overlay function"""
 
     def inner(final: dict) -> dict:
         prev = f(final)
@@ -56,7 +57,7 @@ def converge(f: Callable, x: Any) -> Any:
 
 
 def to_extension(f: Any) -> Any:
-    """Convert a function to an extension compatible form"""
+    """Convert a function to an extension-compatible form"""
 
     if callable(f) is False:
         return lambda final: lambda prev: f
@@ -71,3 +72,38 @@ def to_extension(f: Any) -> Any:
         return f_prev
 
     return inner
+
+
+@curry
+def compose_extensions(f: Callable, g: Callable, final: dict, prev: dict) -> Any:
+    """Compose two extensions into a single extension"""
+
+    f_applied = f(final)(prev)
+    prev_prime = prev | f_applied
+
+    return f_applied | g(final)(prev_prime)
+
+
+compose_many_extensions = foldr(lambda x: lambda y: compose_extensions(x)(y))(
+    lambda final: lambda prev: {}
+)
+
+
+@curry
+def make_extensible_with_custom_name(extender_name: str, rattrs: Callable) -> dict:
+    """Make a fixed-point with a custom name for the extension function"""
+
+    def inner(self: dict) -> dict:
+        func = lambda f: make_extensible_with_custom_name(extender_name)(
+            extends(f)(rattrs)
+        )
+
+        return rattrs(self) | {extender_name: func}
+
+    return fix_prime(inner)
+
+
+def make_extensible(rattrs: Callable) -> dict:
+    """Make a fixed-point with the default "extend" function name"""
+
+    return make_extensible_with_custom_name("extend")(rattrs)

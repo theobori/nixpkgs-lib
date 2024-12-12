@@ -13,7 +13,7 @@ from beautifultable import BeautifulTable
 
 import nixpkgs_lib_python
 
-from .. import fixed_point
+from .. import fixed_points
 from .. import lists
 
 
@@ -39,7 +39,7 @@ def filter_attributes(names: List[str]) -> List[str]:
 
 # Nix name -> Python name
 NIX_ATTR_NAMES = {
-    "fixedPoints": "fixed_point",
+    "fixedPoints": "fixed_points",
     "lists": "lists",
 }
 
@@ -184,7 +184,7 @@ def build_progress() -> Dict[str, dict]:
     module_names = []
 
     for module in (
-        fixed_point,
+        fixed_points,
         lists,
     ):
         names = dir(module)
