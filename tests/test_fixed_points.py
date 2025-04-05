@@ -18,7 +18,7 @@ from nixpkgs_lib import (
 class TestFixedPoints(unittest.TestCase):
     """Controller for the fixed point tests"""
 
-    def atest_fixed_points_fix_dict(self):
+    def test_fixed_points_fix_dict(self):
         """Test fixed points with a dict"""
 
         attrs_function = lambda self: {
@@ -38,7 +38,7 @@ class TestFixedPoints(unittest.TestCase):
 
         self.assertTrue("__unfix__" in attrs)
 
-    def atest_fixed_points_fix_list(self):
+    def test_fixed_points_fix_list(self):
         """Test fixed points with a list"""
 
         it_function = lambda self: [
@@ -52,7 +52,7 @@ class TestFixedPoints(unittest.TestCase):
 
         self.assertEqual(it[1], "hello world hello")
 
-    def atest_fixed_points_extends(self):
+    def test_fixed_points_extends(self):
         """Test fixed points extends function"""
 
         f = lambda final: {"a": 1, "b": final["a"] + 2}
@@ -72,13 +72,13 @@ class TestFixedPoints(unittest.TestCase):
 
         self.assertDictEqual(result, {"a": 1, "b": 3, "c": 4})
 
-    def atest_fixed_points_converge(self):
+    def test_fixed_points_converge(self):
         """Test fixed points converge function"""
         result = converge(lambda x: x // 2, 16)
 
         self.assertEqual(result, 0)
 
-    def atest_fixed_points_to_extension(self):
+    def test_fixed_points_to_extension(self):
         """Test fixed points to_extension function"""
 
         extension = to_extension({"a": 1, "b": 2})
@@ -98,7 +98,7 @@ class TestFixedPoints(unittest.TestCase):
 
         self.assertDictEqual(result, {"a": 1, "b": 0, "c": 2})
 
-    def atest_fixed_points_compose_many_extensions(self):
+    def test_fixed_points_compose_many_extensions(self):
         """Test fixed points compose_many_extensions function"""
 
         original = lambda final: {"a": 1}
@@ -112,7 +112,7 @@ class TestFixedPoints(unittest.TestCase):
 
         self.assertEqual(fixed_point, {"a": 1, "b": 10, "c": 10, "x": 3})
 
-    def atest_fixed_points_make_extensible(self):
+    def test_fixed_points_make_extensible(self):
         """Test fixed points make_extensible function"""
 
         obj = make_extensible(lambda final: {})
