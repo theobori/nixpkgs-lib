@@ -5,7 +5,7 @@
 
 This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib`.
 
-## Implementation progress: 97.10% (67 / 69)
+## Implementation progress: 95.71% (67 / 70)
 
 This section lists all the functions in the Nixpkgs library that are supposed to be implemented.
 Each function name is associated with a status indicating whether it has been implemented.
@@ -23,7 +23,7 @@ Each function name is associated with a status indicating whether it has been im
 |`makeExtensibleWithCustomName`|`make_extensible_with_custom_name`|Yes|
 |`toExtension`|`to_extension`|Yes|
 
-### `lists`: 96.67% (58/60)
+### `lists`: 95.08% (58/61)
 |Nix name|Python name|Implemented|
 |-|-|-|
 |`all`|`_all`|Yes|
@@ -81,6 +81,7 @@ Each function name is associated with a status indicating whether it has been im
 |`subtractLists`|`subtract_lists`|Yes|
 |`tail`|`tail`|Yes|
 |`take`|`take`|Yes|
+|`takeEnd`|`take_end`|No|
 |`toList`|`to_list`|Yes|
 |`toposort`|`toposort`|Yes|
 |`unique`|`unique`|Yes|
