@@ -2,8 +2,8 @@
 
 from typing import Callable, Iterator, Any
 
-from nixpkgs_lib.laziness_simulation.lazy_iterator import LazyIterator
-from nixpkgs_lib.curry.curry import curry
+from nixpkgs_lib.laziness_simulation import LazyIterator
+from nixpkgs_lib.curry import curry
 from nixpkgs_lib.lists import foldr
 
 

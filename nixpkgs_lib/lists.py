@@ -3,7 +3,7 @@
 import re
 import functools
 
-from typing import Callable, Any, List, Iterator
+from typing import Callable, Any, Iterator
 
 from nixpkgs_lib.curry import curry
 

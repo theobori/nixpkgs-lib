@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nixpkgs_lib"
+version = "0.0.1"
+dependencies = [
+  "beautifultable",
+]
+requires-python = ">=3.13.5"
+authors = [
+  {name = "Théo Bori", email = "nagi@tilde.team"}
+]
+maintainers = [
+  {name = "Théo Bori", email = "nagi@tilde.team"}
+]
+description = "Nixpkgs library part implementation in Python with laziness simulation"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.scripts]
+nixpkgs-lib = "nixpkgs_lib.scripts.show_progress:main"
+
+[project.urls]
+Homepage = "https://github.com/theobori/nixpkgs-lib"
+Documentation = "https://github.com/theobori/nixpkgs-lib"
+Repository = "https://github.com/theobori/nixpkgs-lib"
+
+[tool.setuptools]
+packages = ["nixpkgs_lib"]

@@ -25,6 +25,7 @@
             inherit (pkgs.python3Packages)
               buildPythonPackage
               setuptools
+              setuptools-scm
               pytestCheckHook
               beautifultable
               ;
@@ -43,6 +44,7 @@
                 pip
                 venvShellHook
                 setuptools
+                setuptools-scm
                 pytest
               ])
               ++ self.packages.${system}.default.dependencies;

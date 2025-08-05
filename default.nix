@@ -4,6 +4,7 @@
   setuptools,
   pytestCheckHook,
   beautifultable,
+  setuptools-scm,
 }:
 buildPythonPackage {
   pname = "nixpkgs-lib";
@@ -12,11 +13,14 @@ buildPythonPackage {
 
   src = ./.;
 
+  build-system = [
+    setuptools
+    setuptools-scm
+  ];
+
   dependencies = [
     beautifultable
   ];
-
-  nativeBuildInputs = [ setuptools ];
 
   nativeCheckInputs = [ pytestCheckHook ];
 
