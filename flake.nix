@@ -43,6 +43,7 @@
                 pip
                 venvShellHook
                 setuptools
+                pytest
               ])
               ++ self.packages.${system}.default.dependencies;
           };

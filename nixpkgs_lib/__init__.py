@@ -1,6 +1,6 @@
 """__init__ module"""
 
-from .fixed_points import (
+from nixpkgs_lib.fixed_points import (
     fix,
     fix_prime,
     extends,
@@ -11,7 +11,7 @@ from .fixed_points import (
     make_extensible_with_custom_name,
     make_extensible,
 )
-from .lists import (
+from nixpkgs_lib.lists import (
     foldr,
     fold,
     foldl,

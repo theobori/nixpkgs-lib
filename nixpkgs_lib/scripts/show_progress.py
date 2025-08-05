@@ -11,8 +11,8 @@ from sys import stderr, argv
 
 from beautifultable import BeautifulTable
 
-from .. import fixed_points
-from .. import lists
+from nixpkgs_lib import fixed_points
+from nixpkgs_lib import lists
 
 
 def filter_attributes(names: List[str]) -> List[str]:

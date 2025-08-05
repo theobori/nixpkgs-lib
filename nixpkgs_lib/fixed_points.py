@@ -2,9 +2,9 @@
 
 from typing import Callable, Iterator, Any
 
-from .laziness_simulation.lazy_iterator import LazyIterator
-from .curry.curry import curry
-from .lists import foldr
+from nixpkgs_lib.laziness_simulation.lazy_iterator import LazyIterator
+from nixpkgs_lib.curry.curry import curry
+from nixpkgs_lib.lists import foldr
 
 
 def fix(f: Callable) -> Iterator:

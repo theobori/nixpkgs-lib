@@ -1,6 +1,6 @@
 """dunders module"""
 
-ALU_DUNDERS = (
+DUNDERS_ALL = (
     "__add__",
     "__radd__",
     "__sub__",
@@ -19,14 +19,14 @@ ALU_DUNDERS = (
     "__rmatmul__",
 )
 
-ORDER_DUNDERS = (
+DUNDERS_ORDER = (
     "__lt__",
     "__le__",
     "__gt__",
     "__ge__",
 )
 
-TYPE_DUNDERS = (
+DUNDERS_TYPE = (
     "__str__",
     "__bool__",
     "__int__",

@@ -5,7 +5,7 @@ import functools
 
 from typing import Callable, Any, List, Iterator
 
-from .curry.curry import curry
+from nixpkgs_lib.curry import curry
 
 
 @curry

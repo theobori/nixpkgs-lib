@@ -2,7 +2,7 @@
 
 from typing import Tuple, Dict, Any
 
-from .stub import Stub
+from nixpkgs_lib.laziness_simulation.stub import Stub
 
 
 class LazyIterator(list):
