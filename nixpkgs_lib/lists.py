@@ -3,7 +3,7 @@
 import re
 import functools
 
-from typing import Callable, Any, Iterator
+from typing import Callable, Any, Sequence
 
 from nixpkgs_lib.curry import curry
 
@@ -27,8 +27,8 @@ fold = foldr
 
 
 @curry
-def for_each(xs: Iterator, f: Callable) -> Iterator:
-    """Apply a function to each element in an iterator"""
+def for_each(xs: Sequence, f: Callable) -> Sequence:
+    """Apply a function to each element in a sequence"""
 
     return map(f, xs)
 

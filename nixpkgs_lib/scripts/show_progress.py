@@ -6,8 +6,8 @@ import re
 import builtins
 
 from argparse import ArgumentParser
-from typing import List, Dict
-from sys import stderr, argv
+from typing import List, Dict, NoReturn
+from sys import stderr
 
 from beautifultable import BeautifulTable
 
@@ -310,9 +310,9 @@ def build_argument_parser() -> ArgumentParser:
         description="CLI printing the Nixpkgs library Python implementation progress",
     )
 
-    parser.add_argument("action", help="['ascii', 'markdown', 'readme']")
+    parser.add_argument("action", choices=["ascii", "markdown", "readme"])
     parser.add_argument(
-        "--readme-template",
+        "--readme-template-file",
         type=str,
         help="The README file template used to generate a README markdown file with the 'readme' action",
         default="./TEMPLATE.md",
@@ -321,7 +321,7 @@ def build_argument_parser() -> ArgumentParser:
     return parser
 
 
-def main():
+def main() -> NoReturn:
     parser = build_argument_parser()
     args = parser.parse_args()
 

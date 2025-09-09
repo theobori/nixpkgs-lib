@@ -5,8 +5,8 @@ from typing import Tuple, Any, Dict, Callable
 from nixpkgs_lib.dunders import DUNDERS_ALL, DUNDERS_ORDER
 
 
-def alu_stub_function(self, other: Any):
-    """_summary_
+def alu_stub_function(_: object, other: Any) -> Any:
+    """Returns a stub value for ALU Python functions.
 
     Args:
         other (Any): _description_
@@ -18,12 +18,12 @@ def alu_stub_function(self, other: Any):
     return other
 
 
-def do_stub_calls(dunders: Tuple[str], stub_function: Callable):
-    """_summary_
+def do_stub_calls(dunders: Tuple[str], stub_function: Callable) -> Dict[str, Callable]:
+    """Associates Python special methods names with a stub function reference.
 
     Args:
-        dunders (Tuple[str]): _description_
-        stub_function (Callable): _description_
+        dunders (Tuple[str]): The names.
+        stub_function (Callable): The stub function.
 
     Returns:
         _type_: _description_
@@ -54,9 +54,6 @@ METHODS_CALLS = {
 class StubMeta(type):
     """Stub metaclass, mainly used to initialize dunders methods during
     class build time
-
-    Args:
-        type (_type_): _description_
     """
 
     def __new__(cls, name: str, bases: Tuple[type, ...], namespace: Dict[str, Any]):
@@ -69,10 +66,7 @@ class StubMeta(type):
 class Stub(metaclass=StubMeta):
     """Short lifetime object used as a stub for function
     that needs laziness simulation
-
-    Args:
-        metaclass (_type_, optional): _description_. Defaults to StubMeta.
     """
 
-    def __getitem__(self, key: Any):
+    def __getitem__(self, _: Any):
         return Stub()

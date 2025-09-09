@@ -1,7 +1,7 @@
 """laziness simulation module"""
 
-from nixpkgs_lib.laziness_simulation.lazy_iterator import LazyIterator
+from nixpkgs_lib.laziness_simulation.stub_sequence import StubSequence
 
 __all__ = [
-    "LazyIterator",
+    "StubSequence",
 ]

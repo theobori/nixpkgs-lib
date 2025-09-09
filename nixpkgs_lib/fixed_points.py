@@ -1,29 +1,29 @@
 """fixed point module"""
 
-from typing import Callable, Iterator, Any
+from typing import Callable, Sequence, Any
 
-from nixpkgs_lib.laziness_simulation import LazyIterator
+from nixpkgs_lib.laziness_simulation import StubSequence
 from nixpkgs_lib.curry import curry
 from nixpkgs_lib.lists import foldr
 
 
-def fix(f: Callable) -> Iterator:
+def fix(f: Callable) -> Sequence:
     """Compute the least fixed point of a function"""
 
     # Evaluates with the stub value
-    result = f(LazyIterator())
+    result = f(StubSequence())
     # Final evaluation
     result = f(result)
 
     return result
 
 
-def fix_prime(f: Callable) -> Iterator:
+def fix_prime(f: Callable) -> Sequence:
     """Like fix but preserves the original function in __unfix__"""
 
     result = fix(f)
 
-    if type(result) is dict:
+    if isinstance(result, dict):
         result["__unfix__"] = f
 
     return result
