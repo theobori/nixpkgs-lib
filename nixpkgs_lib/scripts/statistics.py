@@ -1,7 +1,9 @@
 """progress script"""
 
+import builtins
+
 from argparse import ArgumentParser
-from typing import Dict, NoReturn, Callable, Tuple, Any
+from typing import Dict, NoReturn, Tuple, Any
 from sys import stderr, exit
 
 from beautifultable import BeautifulTable
@@ -10,12 +12,13 @@ from nixpkgs_lib import fixed_points
 from nixpkgs_lib import lists
 from nixpkgs_lib import strings
 
-from nixpkgs_lib._nix import NixProgress, filter_attributes
+from nixpkgs_lib._nix import get_implemented_names
+from nixpkgs_lib._builtin import filter_attributes
 
 TABLE_TITLES = ["Nix name", "Python name", "Implemented"]
 
 
-def build_progress(filter_func: Callable, modules: tuple) -> Dict[str, dict]:
+def build_progress(modules: tuple) -> Dict[str, dict]:
     """_summary_
 
     Args:
@@ -31,13 +34,11 @@ def build_progress(filter_func: Callable, modules: tuple) -> Dict[str, dict]:
     for module in modules:
         names = dir(module)
         # Removing dunders method, just by prevention
-        names = filter_func(names)
+        names = filter_attributes(names)
 
         module_names |= set(names)
 
-    nix = NixProgress()
-
-    return nix.implemented_names(module_names)
+    return get_implemented_names(module_names)
 
 
 def ascii_table(progress: Dict[str, dict]):
@@ -185,7 +186,7 @@ def main() -> NoReturn:
 
     progress: Dict[str, dict]
     try:
-        progress = build_progress(filter_func=filter_attributes, modules=modules)
+        progress = build_progress(modules)
     except Exception as e:
         print_fatal(e)
 

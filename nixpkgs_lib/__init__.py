@@ -72,6 +72,26 @@ from nixpkgs_lib.lists import (
     toposort,
 )
 
+from nixpkgs_lib.strings import (
+    to_upper,
+    char_to_int,
+    cmake_bool,
+    cmake_feature,
+    cmake_option_type,
+    common_prefix_length,
+    common_suffix_length,
+    concat_imap_strings,
+    concat_imap_strings_sep,
+    concat_lines,
+    concat_map_attrs_string_sep,
+    concat_map_strings,
+    concat_map_strings_sep,
+    concat_strings,
+    concat_strings_sep,
+    enable_feature,
+    enable_feature_as,
+)
+
 __all__ = [
     "fix",
     "fix_prime",
@@ -143,6 +163,21 @@ __all__ = [
     "toposort",
     "unique_strings",
     "unique",
+    "to_upper",
+    "char_to_int",
+    "cmake_bool",
+    "cmake_feature",
+    "cmake_option_type",
+    "common_prefix_length",
+    "common_suffix_length",
+    "concat_imap_strings",
+    "concat_imap_strings_sep",
+    "concat_lines",
+    "concat_map_attrs_string_sep",
+    "concat_map_strings",
+    "concat_map_strings_sep",
+    "concat_strings",
+    "concat_strings_sep",
+    "enable_feature",
+    "enable_feature_as",
 ]
-
-from nixpkgs_lib.strings import to_upper, upper_chars
