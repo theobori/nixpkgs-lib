@@ -144,3 +144,5 @@ __all__ = [
     "unique_strings",
     "unique",
 ]
+
+from nixpkgs_lib.strings import to_upper, upper_chars

@@ -33,6 +33,7 @@ BUILTIN_NAMES = set(filter_attributes(dir(builtins)))
 NIX_ATTR_NAMES = {
     "fixedPoints": "fixed_points",
     "lists": "lists",
+    "strings": "strings",
 }
 
 

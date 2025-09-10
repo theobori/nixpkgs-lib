@@ -8,12 +8,14 @@ from beautifultable import BeautifulTable
 
 from nixpkgs_lib import fixed_points
 from nixpkgs_lib import lists
+from nixpkgs_lib import strings
+
 from nixpkgs_lib._nix import NixProgress, filter_attributes
 
 TABLE_TITLES = ["Nix name", "Python name", "Implemented"]
 
 
-def build_progress(filter_func: Callable) -> Dict[str, dict]:
+def build_progress(filter_func: Callable, modules: tuple) -> Dict[str, dict]:
     """_summary_
 
     Args:
@@ -26,10 +28,7 @@ def build_progress(filter_func: Callable) -> Dict[str, dict]:
     # Get the implemented function Python names
     module_names = set()
 
-    for module in (
-        fixed_points,
-        lists,
-    ):
+    for module in modules:
         names = dir(module)
         # Removing dunders method, just by prevention
         names = filter_func(names)
@@ -182,9 +181,11 @@ def main() -> NoReturn:
     parser = build_argument_parser()
     args = parser.parse_args()
 
+    modules = (fixed_points, lists, strings)
+
     progress: Dict[str, dict]
     try:
-        progress = build_progress(filter_attributes)
+        progress = build_progress(filter_func=filter_attributes, modules=modules)
     except Exception as e:
         print_fatal(e)
 
