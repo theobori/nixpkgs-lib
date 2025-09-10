@@ -3,7 +3,7 @@
 import re
 import functools
 
-from typing import Callable, Any, Sequence
+from typing import Callable, Any, Sequence, List
 
 from nixpkgs_lib._curry import curry
 
@@ -363,6 +363,13 @@ def drop(count: int, lst: list) -> list:
 
 
 @curry
+def drop_end(count: int, lst: list) -> list:
+    """Drop count elements from the end of the list"""
+
+    return lst[:-count]
+
+
+@curry
 def elem(x: Any, xs: list) -> bool:
     """Return true if x is an element of xs"""
 
@@ -475,12 +482,23 @@ def unique(lst: list) -> list:
     return foldl_prime(f)([])(lst)
 
 
+def unique_strings(lst: List[str]) -> List[str]:
+    return list(set(lst))
+
+
 @curry
 def sort(comparator: Callable, lst: list) -> list:
     """Sort list using comparator function"""
 
     f = lambda a, b: comparator(a)(b)
     f = functools.cmp_to_key(f)
+
+    return sorted(lst, key=f)
+
+
+@curry
+def sort_on(f: Callable, lst: list) -> list:
+    """Sort a list based on the default comparison of a derived property b"""
 
     return sorted(lst, key=f)
 

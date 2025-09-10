@@ -1,7 +1,9 @@
 """curry module"""
 
+from typing import Callable, Tuple
 
-def curry(func):
+
+def curry(func: Callable):
     """Decorator used to 'currify' a standard Python function
 
     See https://en.wikipedia.org/wiki/Currying
@@ -11,7 +13,7 @@ def curry(func):
         func (_type_): _description_
     """
 
-    def curried(*args):
+    def curried(*args: Tuple[str]):
         if len(args) == func.__code__.co_argcount:
             return func(*args)
 

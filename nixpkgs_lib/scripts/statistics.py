@@ -166,6 +166,7 @@ def build_argument_parser() -> ArgumentParser:
 
     return parser
 
+
 def print_fatal(*args: Tuple[str], **kwargs: Dict[str, Any]):
     """Calls the print function with custom arguments and
     redirection to the standard error stream.
@@ -175,6 +176,7 @@ def print_fatal(*args: Tuple[str], **kwargs: Dict[str, Any]):
 
     print(*args, **kwargs, file=stderr)
     exit(1)
+
 
 def main() -> NoReturn:
     parser = build_argument_parser()

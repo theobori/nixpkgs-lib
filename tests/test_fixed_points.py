@@ -2,17 +2,18 @@
 
 import unittest
 
-from nixpkgs_lib import (
+from nixpkgs_lib.fixed_points import (
     fix,
     fix_prime,
     extends,
     converge,
     to_extension,
-    elem_at,
     compose_extensions,
     compose_many_extensions,
     make_extensible,
 )
+
+from nixpkgs_lib.lists import elem_at
 
 
 class TestFixedPoints(unittest.TestCase):

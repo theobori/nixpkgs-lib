@@ -2,11 +2,7 @@
 
 import unittest
 
-from nixpkgs_lib import (
-    fix,
-    fix_prime,
-    extends,
-    fold,
+from nixpkgs_lib.lists import (
     foldr,
     foldl,
     _all,
@@ -43,10 +39,14 @@ from nixpkgs_lib import (
     take_end,
     unique,
     sort,
+    sort_on,
     concat_map,
     cross_lists,
     list_dfs,
     toposort,
+    drop,
+    drop_end,
+    unique_strings,
 )
 
 
@@ -317,6 +317,13 @@ class TestLists(unittest.TestCase):
 
         self.assertEqual(result, [3, 5, 7])
 
+    def test_lists_sort_on(self):
+        """Test lists sort_on"""
+
+        result = sort_on(len)(["aa", "b", "cccc"])
+
+        self.assertEqual(result, ["b", "aa", "cccc"])
+
     def test_lists_concat_map(self):
         """Test lists concat_map"""
 
@@ -370,6 +377,27 @@ class TestLists(unittest.TestCase):
 
         result = toposort(lambda a: lambda b: a < b)([3, 2, 1])
         self.assertEqual(result, {"result": [1, 2, 3]})
+
+    def test_lists_drop(self):
+        """Test lists drop"""
+
+        result = drop(2, ["a", "b", "c", "d"])
+
+        self.assertEqual(result, ["c", "d"])
+
+    def test_lists_drop_end(self):
+        """Test lists drop_end"""
+
+        result = drop_end(2, ["a", "b", "c", "d"])
+
+        self.assertEqual(result, ["a", "b"])
+
+    def test_lists_unique_strings(self):
+        """Test lists unique_strings"""
+
+        result = unique_strings(["foo", "bar", "foo"])
+
+        self.assertEqual(result, ["foo", "bar"])
 
 
 if __name__ == "__main__":
