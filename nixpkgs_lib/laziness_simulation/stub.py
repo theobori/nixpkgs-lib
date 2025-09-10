@@ -2,7 +2,7 @@
 
 from typing import Tuple, Any, Dict, Callable
 
-from nixpkgs_lib.dunders import DUNDERS_ALL, DUNDERS_ORDER
+from nixpkgs_lib._dunders import DUNDERS_ALL, DUNDERS_ORDER
 
 
 def alu_stub_function(_: object, other: Any) -> Any:

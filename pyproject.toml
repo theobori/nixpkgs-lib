@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 [project.scripts]
-nixpkgs-lib = "nixpkgs_lib.scripts.show_progress:main"
+statistics = "nixpkgs_lib.scripts.statistics:main"
 
 [project.urls]
 Homepage = "https://github.com/theobori/nixpkgs-lib"

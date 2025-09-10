@@ -30,5 +30,6 @@ buildPythonPackage {
     description = "Nixpkgs library part implementation in Python with laziness simulation";
     homepage = "https://github.com/theobori/nixpkgs-lib";
     license = lib.licenses.mit;
+    mainProgram = "statistics";
   };
 }

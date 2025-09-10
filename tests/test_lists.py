@@ -40,6 +40,7 @@ from nixpkgs_lib import (
     foldl_prime,
     count,
     take,
+    take_end,
     unique,
     sort,
     concat_map,
@@ -293,6 +294,14 @@ class TestLists(unittest.TestCase):
         result = take(2)(["a", "b", "c", "d"])
 
         self.assertEqual(result, ["a", "b"])
+        self.assertEqual(take(2)([]), [])
+
+    def test_lists_take(self):
+        """Test lists take"""
+
+        result = take_end(2)(["a", "b", "c", "d"])
+
+        self.assertEqual(result, ["c", "d"])
         self.assertEqual(take(2)([]), [])
 
     def test_lists_unique(self):

@@ -9,17 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check -L
       - run: nix build
       - name: Update the implementation progress inside the README file
         run: |
-          ./result/bin/nixpkgs-lib readme > README.md.new
+          ./result/bin/statistics readme > README.md.new
 
           # Check if they are differents
-          if ! cmp -s README.md README.md.new; then
+          if ! cmp -s README.md README.md.new
+          then
             # Replacing the original README by the new one
             mv README.md.new README.md
 

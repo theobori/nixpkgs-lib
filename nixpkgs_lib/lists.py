@@ -5,7 +5,7 @@ import functools
 
 from typing import Callable, Any, Sequence
 
-from nixpkgs_lib.curry import curry
+from nixpkgs_lib._curry import curry
 
 
 @curry
@@ -458,6 +458,13 @@ def take(count: int) -> Callable:
     """Take first count elements from list"""
 
     return sublist(0)(count)
+
+
+@curry
+def take_end(count: int, xs: list) -> Callable:
+    """Take first count elements from list"""
+
+    return drop(max(0, len(xs) - count), xs)
 
 
 def unique(lst: list) -> list:

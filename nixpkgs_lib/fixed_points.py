@@ -3,7 +3,7 @@
 from typing import Callable, Sequence, Any
 
 from nixpkgs_lib.laziness_simulation import StubSequence
-from nixpkgs_lib.curry import curry
+from nixpkgs_lib._curry import curry
 from nixpkgs_lib.lists import foldr
 
 
