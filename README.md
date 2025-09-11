@@ -5,7 +5,7 @@
 
 This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib`.
 
-## Implementation progress: 47.16% (83 / 176)
+## Implementation progress: 56.25% (99 / 176)
 
 This section lists all the functions in the Nixpkgs library that are supposed to be implemented.
 Each function name is associated with a status indicating whether it has been implemented.
@@ -89,29 +89,29 @@ Each function name is associated with a status indicating whether it has been im
 |`zipLists`|`zip_lists`|Yes|
 |`zipListsWith`|`zip_lists_with`|Yes|
 
-### `strings`: 11.43% (12/105)
+### `strings`: 26.67% (28/105)
 |Nix name|Python name|Implemented|
 |-|-|-|
 |`addContextFrom`|`add_context_from`|No|
-|`charToInt`|`char_to_int`|No|
-|`cmakeBool`|`cmake_bool`|No|
-|`cmakeFeature`|`cmake_feature`|No|
-|`cmakeOptionType`|`cmake_option_type`|No|
-|`commonPrefixLength`|`common_prefix_length`|No|
-|`commonSuffixLength`|`common_suffix_length`|No|
+|`charToInt`|`char_to_int`|Yes|
+|`cmakeBool`|`cmake_bool`|Yes|
+|`cmakeFeature`|`cmake_feature`|Yes|
+|`cmakeOptionType`|`cmake_option_type`|Yes|
+|`commonPrefixLength`|`common_prefix_length`|Yes|
+|`commonSuffixLength`|`common_suffix_length`|Yes|
 |`compareVersions`|`compare_versions`|No|
-|`concatImapStrings`|`concat_imap_strings`|No|
-|`concatImapStringsSep`|`concat_imap_strings_sep`|No|
-|`concatLines`|`concat_lines`|No|
-|`concatMapAttrsStringSep`|`concat_map_attrs_string_sep`|No|
-|`concatMapStrings`|`concat_map_strings`|No|
-|`concatMapStringsSep`|`concat_map_strings_sep`|No|
-|`concatStrings`|`concat_strings`|No|
-|`concatStringsSep`|`concat_strings_sep`|No|
+|`concatImapStrings`|`concat_imap_strings`|Yes|
+|`concatImapStringsSep`|`concat_imap_strings_sep`|Yes|
+|`concatLines`|`concat_lines`|Yes|
+|`concatMapAttrsStringSep`|`concat_map_attrs_string_sep`|Yes|
+|`concatMapStrings`|`concat_map_strings`|Yes|
+|`concatMapStringsSep`|`concat_map_strings_sep`|Yes|
+|`concatStrings`|`concat_strings`|Yes|
+|`concatStringsSep`|`concat_strings_sep`|Yes|
 |`elem`|`elem`|Yes|
 |`elemAt`|`elem_at`|Yes|
-|`enableFeature`|`enable_feature`|No|
-|`enableFeatureAs`|`enable_feature_as`|No|
+|`enableFeature`|`enable_feature`|Yes|
+|`enableFeatureAs`|`enable_feature_as`|Yes|
 |`escape`|`escape`|No|
 |`escapeC`|`escape_c`|No|
 |`escapeNixIdentifier`|`escape_nix_identifier`|No|
