@@ -5,7 +5,7 @@
 
 This GitHub repository is a fun project whose aim is to implement in [Python](https://www.python.org/) the `lib` part of [Nixpkgs](https://github.com/NixOS/nixpkgs), more precisely the logic part. All functions implemented as part of the Nixpkgs library are [curryfied](https://en.wikipedia.org/wiki/Currying). As far as `builtins` functions are concerned, only those required by `lib` will be added to the module, and they will only be available through `lib`, i.e. `nixpkgs_lib`.
 
-## Implementation progress: 56.25% (99 / 176)
+## Implementation progress: 55.93% (99 / 177)
 
 This section lists all the functions in the Nixpkgs library that are supposed to be implemented.
 Each function name is associated with a status indicating whether it has been implemented.
@@ -23,7 +23,7 @@ Each function name is associated with a status indicating whether it has been im
 |`makeExtensibleWithCustomName`|`make_extensible_with_custom_name`|Yes|
 |`toExtension`|`to_extension`|Yes|
 
-### `lists`: 100.00% (62/62)
+### `lists`: 96.88% (62/64)
 |Nix name|Python name|Implemented|
 |-|-|-|
 |`all`|`_all`|Yes|
@@ -31,6 +31,7 @@ Each function name is associated with a status indicating whether it has been im
 |`any`|`_any`|Yes|
 |`commonPrefix`|`common_prefix`|Yes|
 |`compareLists`|`compare_lists`|Yes|
+|`concatAttrValues`|`concat_attr_values`|No|
 |`concatLists`|`concat_lists`|Yes|
 |`concatMap`|`concat_map`|Yes|
 |`count`|`count`|Yes|
@@ -72,6 +73,7 @@ Each function name is associated with a status indicating whether it has been im
 |`range`|`_range`|Yes|
 |`remove`|`remove`|Yes|
 |`removePrefix`|`remove_prefix`|Yes|
+|`replaceElemAt`|`replace_elem_at`|No|
 |`replicate`|`replicate`|Yes|
 |`reverseList`|`reverse_list`|Yes|
 |`singleton`|`singleton`|Yes|
@@ -89,10 +91,11 @@ Each function name is associated with a status indicating whether it has been im
 |`zipLists`|`zip_lists`|Yes|
 |`zipListsWith`|`zip_lists_with`|Yes|
 
-### `strings`: 26.67% (28/105)
+### `strings`: 26.92% (28/104)
 |Nix name|Python name|Implemented|
 |-|-|-|
 |`addContextFrom`|`add_context_from`|No|
+|`appendContext`|`append_context`|No|
 |`charToInt`|`char_to_int`|Yes|
 |`cmakeBool`|`cmake_bool`|Yes|
 |`cmakeFeature`|`cmake_feature`|Yes|
@@ -136,7 +139,6 @@ Each function name is associated with a status indicating whether it has been im
 |`head`|`head`|Yes|
 |`intersperse`|`intersperse`|No|
 |`isAttrs`|`is_attrs`|No|
-|`isCoercibleToString`|`is_coercible_to_string`|No|
 |`isConvertibleWithToString`|`is_convertible_with_to_string`|No|
 |`isInt`|`is_int`|No|
 |`isList`|`is_list`|Yes|
@@ -145,6 +147,7 @@ Each function name is associated with a status indicating whether it has been im
 |`isString`|`is_string`|No|
 |`isStringLike`|`is_string_like`|No|
 |`isValidPosixName`|`is_valid_posix_name`|No|
+|`join`|`join`|No|
 |`levenshtein`|`levenshtein`|No|
 |`levenshteinAtMost`|`levenshtein_at_most`|No|
 |`lowerChars`|`lower_chars`|No|
@@ -162,10 +165,8 @@ Each function name is associated with a status indicating whether it has been im
 |`optionalString`|`optional_string`|No|
 |`parseDrvName`|`parse_drv_name`|No|
 |`readFile`|`read_file`|No|
-|`readPathsFromFile`|`read_paths_from_file`|No|
 |`removePrefix`|`remove_prefix`|Yes|
 |`removeSuffix`|`remove_suffix`|No|
-|`replaceChars`|`replace_chars`|No|
 |`replaceString`|`replace_string`|No|
 |`replaceStrings`|`replace_strings`|No|
 |`replicate`|`replicate`|Yes|
