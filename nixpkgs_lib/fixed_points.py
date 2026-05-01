@@ -1,13 +1,13 @@
 """fixed point module"""
 
-from typing import Callable, Sequence, Any
+from typing import Callable, Any
 
 from nixpkgs_lib.laziness_simulation import StubSequence
 from nixpkgs_lib._curry import curry
 from nixpkgs_lib.lists import foldr
 
 
-def fix(f: Callable) -> Sequence:
+def fix(f: Callable) -> Any:
     """Compute the least fixed point of a function"""
 
     # Evaluates with the stub value
@@ -18,7 +18,7 @@ def fix(f: Callable) -> Sequence:
     return result
 
 
-def fix_prime(f: Callable) -> Sequence:
+def fix_prime(f: Callable) -> Any:
     """Like fix but preserves the original function in __unfix__"""
 
     result = fix(f)
