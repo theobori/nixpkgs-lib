@@ -2,6 +2,8 @@
 
 import unittest
 
+from typing import Callable
+
 from nixpkgs_lib.fixed_points import (
     fix,
     fix_prime,
@@ -52,6 +54,18 @@ class TestFixedPoints(unittest.TestCase):
         it = fix(it_function)
 
         self.assertEqual(it[1], "hello world hello")
+
+    def test_fixed_points_fix_function(self):
+        """Test fixed points with a function"""
+
+        function = lambda outer: lambda inner: [1, 2, inner[0] + inner[1]]
+
+        ans = fix(function)
+        self.assertIsInstance(ans, Callable)
+
+        ans = fix(ans)
+
+        self.assertEqual(ans[2], 3)
 
     def test_fixed_points_extends(self):
         """Test fixed points extends function"""
