@@ -58,13 +58,19 @@ class TestFixedPoints(unittest.TestCase):
     def test_fixed_points_fix_function(self):
         """Test fixed points with a function"""
 
-        function = lambda outer: lambda inner: [1, 2, inner[0] + inner[1]]
+        function = lambda outer: lambda _inner: lambda inner: [
+            1,
+            2,
+            inner[0] + inner[1],
+        ]
 
         ans = fix(function)
         self.assertIsInstance(ans, Callable)
 
         ans = fix(ans)
+        self.assertIsInstance(ans, Callable)
 
+        ans = fix(ans)
         self.assertEqual(ans[2], 3)
 
     def test_fixed_points_extends(self):
